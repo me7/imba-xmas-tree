@@ -1,8 +1,8 @@
 global css * box-sizing:border-box bd:0px red2
 
 let snowing = no
-let snowFlakes = []
 let interval
+let snowFlakes = []
 
 tag Toolbar
 	<self[zi:3]>
@@ -13,6 +13,7 @@ tag PlantGrid
 		<div[bg:cool2 s:300px]>
 
 tag Snow
+	iv
 	def genFlakes
 		for i in [0 .. 1000]
 			let left = Math.random() * 2 * window.innerWidth
@@ -28,19 +29,26 @@ tag Snow
 				snowFlakes[index] = {top: 0, left: Math.random() * 2 * window.innerWidth, rate}
 			else
 				snowFlakes[index] = {top: top + rate, left: left - rate, rate}
-			imba.commit!
+		console.log(Date())
+		imba.commit!
+		
 
 	def setup
 		genFlakes!
 
-	<self[t:0 l:0 w:100vw h:100vh]>
-		<button @click=step> "Step run"
-		if snowing
-			interval = setInterval(step, 200)
-		else
-			clearInterval(interval)
+	def run
+		iv = window.setInterval(step, 1000)
 
-		for drop in snowFlakes
+	def stop
+		clearInterval iv
+
+	@observable snowF = snowFlakes
+	<self[t:0 l:0 w:100vw h:100vh]>
+		css button m:1
+		<button @click=step> "Step run {interval}"
+		<button @click=run> "Run {iv}"
+		<button @click=stop> "Stop {iv}"
+		for drop in snowF
 			<div[pos:abs l:{drop.left} top:{drop.top} bg:green s:2px]>
 
 tag App
