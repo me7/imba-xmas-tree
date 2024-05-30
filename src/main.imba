@@ -1,4 +1,6 @@
-global css * box-sizing:border-box bd:0px red2
+global css 
+	* box-sizing:border-box bd:0px red2
+	body bg:gray7 c:white
 
 let snowing = no
 let snowFlakes = []
