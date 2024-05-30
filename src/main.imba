@@ -9,9 +9,16 @@ tag Toolbar
 	<self[zi:3]>
 		<label> <input type="checkbox" bind=snowing /> "Is Snowing? {snowing}"
 
+tag Tile
+	name
+	<self>
+		<div[s:64px bg:green bxs:lg amber7 rotate:0deg ta:center bd:1px p:5]> name
+
 tag PlantGrid
 	<self>
-		<div[bg:cool2 s:300px]>
+		<div[bg:cool2 s:390px d:flex flw:wrap]>
+			for i in [1 .. 30]
+				<Tile name=i>
 
 tag Snow
 	iv = 0
