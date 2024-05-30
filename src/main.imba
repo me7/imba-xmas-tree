@@ -1,12 +1,23 @@
-global css body c:warm2 bg:warm8 ff:Arial inset:0 d:vcc
+global css * box-sizing:border-box bd:0px red2
+
+let snowing = no
+tag Toolbar
+	<self[pos:abs zi:3]>
+		<label> <input type="checkbox" bind=snowing /> "Is Snowing? {snowing}"
+
+tag PlantGrid
+	<self>
+		<div[bg:cool2 s:500px]>
+
+tag Snow
+	<self>
+		<%container [pos:abs t:0 l:0 w:100vw h:100vh]>
+			<%snowflake [pos:abs bg:red z:2 bg:green s:15px]>
 
 tag App
-	count = 0
-	<self>
-		<%counter @click=count++>
-			css e:250ms us:none py:3 px:5 rd:4 bg:gray9 d:hcc g:1
-				bd:1px solid transparent @hover:indigo5
-			<img[s:20px] src="https://imba.io/logo.svg">
-			"count is {count}"
+	<self[ff:sans]>
+		<Toolbar>
+		<Snow>
+		<PlantGrid[pos:abs l:10% t:35% zi:0]>
 
 imba.mount <App>
